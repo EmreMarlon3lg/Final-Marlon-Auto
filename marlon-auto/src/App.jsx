@@ -12,12 +12,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Search from "./pages/Search";
 
-import AdminRoute from "./admin/AdminRoute";
-import AdminLayout from "./admin/AdminLayout";
-import AdminDashboard from "./admin/pages/AdminDashboard";
-import AdminCars from "./admin/pages/AdminCars";
-import AdminUsers from "./admin/pages/AdminUsers";
-import AdminLogs from "./admin/pages/AdminLogs";
+import AdminRoute from "./Admin/AdminRoute";
+import AdminLayout from "./Admin/AdminLayout";
+import AdminDashboard from "./Admin/pages/AdminDashboard";
+import AdminCars from "./Admin/pages/AdminCars";
+import AdminUsers from "./Admin/pages/AdminUsers";
+import AdminLogs from "./Admin/pages/AdminLogs";
 
 export default function App() {
   return (
