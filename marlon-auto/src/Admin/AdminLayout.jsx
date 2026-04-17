@@ -58,8 +58,6 @@ export default function AdminLayout() {
               </div>
             </div>
           </aside>
-
-          {/* Content */}
           <main className="lg:col-span-9">
             <Outlet />
           </main>
