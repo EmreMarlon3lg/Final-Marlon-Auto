@@ -22,6 +22,7 @@ export default function BrandNewCarsPopup({ open, brand, onClose }) {
           "id, brand, model, year, price_eur, main_image_url, created_at"
         )
         .eq("brand", brand)
+        .eq("status", "active")
         .order("created_at", { ascending: false })
         .limit(8);
 

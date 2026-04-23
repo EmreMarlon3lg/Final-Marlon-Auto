@@ -22,7 +22,8 @@ export default function Cars() {
       const { data, error } = await supabase
         .from("cars")
         .select("*")
-        .eq("is_published", true)
+        .eq("status", "active")
+        .eq("category", "regular")
         .in("fuel_type", ["petrol", "diesel", "hybrid"])
         .order("created_at", { ascending: false });
 

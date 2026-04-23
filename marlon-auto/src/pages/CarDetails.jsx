@@ -35,7 +35,8 @@ export default function CarDetails() {
         .from("cars")
         .select("*")
         .eq("id", id)
-        .single();
+        .eq("status", "active")
+        .maybeSingle();
 
       const { data: imgData, error: imgErr } = await supabase
         .from("car_images")

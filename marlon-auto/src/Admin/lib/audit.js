@@ -2,8 +2,11 @@ import { supabase } from "../../Supabase/supabaseClient";
 
 export async function auditLog({ action, entity_type, entity_id, old_data, new_data }) {
   try {
+    const { data: userData } = await supabase.auth.getUser();
+
     await supabase.from("audit_logs").insert([
       {
+        actor_id: userData?.user?.id ?? null,
         action,
         entity_type,
         entity_id: entity_id ?? null,

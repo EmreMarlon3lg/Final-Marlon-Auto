@@ -35,12 +35,14 @@ export default function Register() {
     }
 
     setLoading(true);
+    const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
 
     const { data, error } = await supabase.auth.signUp({
       email: email.trim(),
       password,
       options: {
         data: {
+          full_name: fullName,
           first_name: firstName.trim(),
           last_name: lastName.trim(),
           phone: phone.trim(),
@@ -52,6 +54,23 @@ export default function Register() {
       setMsg({ type: "error", text: error.message || "Грешка при регистрация." });
       setLoading(false);
       return;
+    }
+
+    if (data?.user?.id) {
+      const { error: profileError } = await supabase.from("profiles").upsert({
+        id: data.user.id,
+        email: email.trim(),
+        full_name: fullName,
+        phone: phone.trim(),
+        role: "user",
+        plan: "basic",
+      });
+
+      if (profileError && data?.session) {
+        setMsg({ type: "error", text: profileError.message || "Грешка при създаване на профил." });
+        setLoading(false);
+        return;
+      }
     }
 
     // Ако имаш email confirmation: session може да е null.

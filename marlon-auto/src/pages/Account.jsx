@@ -67,6 +67,7 @@ export default function Account() {
         if (!prof) {
           const { error: insErr } = await supabase.from("profiles").insert({
             id: u.id,
+            email: u.email ?? "",
             full_name: "",
             phone: "",
             plan: "basic",
@@ -120,6 +121,7 @@ export default function Account() {
 
     const payload = {
       id: user.id,
+      email: user.email ?? "",
       full_name: profile.full_name.trim(),
       phone: profile.phone.trim(),
       plan: profile.plan ?? "basic",

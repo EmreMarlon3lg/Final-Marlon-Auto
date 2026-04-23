@@ -29,7 +29,7 @@ export default function Header() {
           .from("profiles")
           .select("role")
           .eq("id", user.id)
-          .single();
+          .maybeSingle();
 
         if (!error && profile?.role === "admin") {
           setIsAdmin(true);

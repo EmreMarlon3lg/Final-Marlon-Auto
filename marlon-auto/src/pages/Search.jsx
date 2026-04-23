@@ -20,13 +20,14 @@ export default function Search() {
     let query = supabase
       .from("cars")
       .select(
-        "id, brand, model, year, price_eur, fuel_type, transmission, mileage_km, main_image_url, created_at"
-      );
+        "id, title, brand, model, year, price_eur, fuel_type, transmission, mileage_km, main_image_url, created_at"
+      )
+      .eq("status", "active");
 
     // 🔍 търсене по brand + model
     const text = q.trim();
     if (text) {
-      query = query.or(`brand.ilike.%${text}%,model.ilike.%${text}%`);
+      query = query.or(`title.ilike.%${text}%,brand.ilike.%${text}%,model.ilike.%${text}%`);
     }
 
     // ⛽ филтър гориво

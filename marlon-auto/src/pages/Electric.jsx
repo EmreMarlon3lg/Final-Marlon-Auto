@@ -16,8 +16,8 @@ export default function Electric() {
       const { data, error } = await supabase
         .from("cars")
         .select("*")
-        .eq("is_published", true)
-        .eq("fuel_type", "electric")
+        .eq("status", "active")
+        .eq("category", "electric")
         .order("created_at", { ascending: false });
 
       if (!isMounted) return;

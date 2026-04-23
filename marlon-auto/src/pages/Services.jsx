@@ -52,10 +52,11 @@ export default function Services() {
     setPlanSaving(true);
     setToast(null);
 
-    const { error } = await supabase
-      .from("profiles")
-      .update({ plan: planKey })
-      .eq("id", user.id);
+    const { error } = await supabase.from("profiles").upsert({
+      id: user.id,
+      email: user.email ?? "",
+      plan: planKey,
+    });
 
     if (error) {
       console.log("PLAN BUY ERROR:", error);
